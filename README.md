@@ -3,7 +3,7 @@
 Alcance de proyecto
 
 
-Descripción
+# Descripción
 Queremos desarrollar una aplicación que se puede usar para encontrar gente que 
 quiere practicar un idioma la aplicación es para estudiantes de idioma. Por ejemplo: estás aprendiendo inglés y querés encontrar alguien para chatear en inglés. Puede ser alguien que habla inglés nativo o también alguien que quiere practicar el idioma (o sea un estudiante).
 
@@ -18,7 +18,7 @@ Sería una app con autenticación --> vas a poder hacer un login o registrarse (
 la funcionalidad login por google/ facebook)
 
 
-Requerimientos mínimos
+# Requerimientos mínimos
 Flujo de Autenticación: Puede ser con proveedores de Identidad (google, facebook, custom)
 Al menos tres vistas
 Alguna integración con una API de terceros.
@@ -30,7 +30,7 @@ Te conecta aleatoriamente (cerca) con otro usuario - codificar → backend??
 react native →  reactnative.dev/docs
 
 
-Apartado I+D 
+# Apartado I+D 
 
 
 
