@@ -1,6 +1,4 @@
-# nt2_proyecto_final
-
-Alcance de proyecto
+# NT2_proyecto_final - Alcance de proyecto
 
 
 # Descripción
