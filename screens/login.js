@@ -2,9 +2,18 @@
 import React, {useState} from 'react';
 import { StyleSheet, Button, View, Text, TextInput,Image, TouchableOpacity } from 'react-native';
 import logo from '../images/logo.png'
-import * as Google from 'expo-google-app-auth';
+import googleLogo from '../images/googleLogo.png'
+
+
+//https://docs.expo.dev/versions/latest/sdk/auth-session/
+//https://docs.expo.dev/versions/latest/sdk/auth-session/#google
+
 
 const Login = () => { 
+
+     const login = () => {
+
+     }
     const [email, setEmail] = useState (null) 
     const [contraseña, setContraseña] = useState (null)
  
@@ -30,16 +39,11 @@ const Login = () => {
           </Text>     
         </TouchableOpacity>
         </View> 
-        <TouchableOpacity>
-        <Text>Login con Google</Text>
-        </TouchableOpacity>
-
-        
-    
-           
-
-
-      
+        <TouchableOpacity
+        onPress= {login}
+      >
+          <Image source= {googleLogo}  style= {styles.buttonGoogle} />
+        </TouchableOpacity>  
     </View>
     )
     };
@@ -47,6 +51,12 @@ const Login = () => {
 const styles = StyleSheet.create({
   buttonText:{
       fontSize: 17
+  },
+  buttonGoogle:{
+      height: 60,
+      resizeMode:"contain",
+      width:350,
+      padding: 20
   },
   logo:{
       height: 150,

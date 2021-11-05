@@ -3,6 +3,7 @@
     "name": "proyecto_final",
     "slug": "proyecto_final",
     "version": "1.0.0",
+    "scheme":"nt2",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -19,7 +20,7 @@
     "ios": {
       "supportsTablet": true,
       "config": {
-        "googleMapsApiKey": "<ios maps api key>"
+        "googleMapsApiKey": ""
     }
     },
     "android": {
