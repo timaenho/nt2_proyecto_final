@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
 
 //#2121F9 --> azul
 //#F2EADF --> blanco
+//#F05F42 --> naranja
 
 import { StatusBar } from 'expo-status-bar';
 import * as React from 'react';
@@ -32,13 +33,24 @@ import { StyleSheet, Text, View, Dimensions } from 'react-native';
 import Mapa from './screens/mapa'
 import Perfil from './screens/perfil'
 import Login from './screens/login'
+import {NavigationContainer} from "@react-navigation/native"
+import { createStackNavigator } from '@react-navigation/stack';
+import Signup from './screens/signup';
+
 
 export default function App() {
+
+  const Stack = createStackNavigator()
+
   return (
-    <View style={styles.container}>
-     <Login/>
-     
-    </View>
+    <NavigationContainer>
+          <Stack.Navigator>
+            <Stack.Screen name = {'Login'} component={Login}/>
+            <Stack.Screen name ={'Perfil'} component = {Perfil}/>
+            <Stack.Screen name = {'Mapa'} component = {Mapa}/>
+            <Stack.Screen name = {'Signup'} component = {Signup}/>
+          </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 

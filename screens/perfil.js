@@ -17,7 +17,9 @@ export default function Perfil() {
     const [idiomaAaprender,setIdiomaAaprender] = useState (null)
 
     return (
+      
         <View style={styles.container}>
+            <StatusBar style= {'auto'}/>
                 <UploadImage/>
         <TouchableOpacity>
             <Text style= {styles.textTitulo}>

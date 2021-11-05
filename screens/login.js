@@ -3,45 +3,62 @@ import React, {useState} from 'react';
 import { StyleSheet, Button, View, Text, TextInput,Image, TouchableOpacity } from 'react-native';
 import logo from '../images/logo.png'
 import googleLogo from '../images/googleLogo.png'
+import { StatusBar } from 'expo-status-bar';
 
 
 //https://docs.expo.dev/versions/latest/sdk/auth-session/
 //https://docs.expo.dev/versions/latest/sdk/auth-session/#google
 
 
-const Login = () => { 
+const Login = ({navigation}) => { 
+
 
      const login = () => {
-
+          console.log('Dentro la función de Login')
+          navigation.navigate("Perfil")
      }
+     const signup = () => {
+      console.log('Dentro la función de signup')
+      navigation.navigate("Signup")
+ }
     const [email, setEmail] = useState (null) 
     const [contraseña, setContraseña] = useState (null)
  
     return( 
       
     <View style= {styles.container}>
+      <StatusBar style = {'auto'}/>
        <Image source= {logo} style={styles.logo}/>
         <TextInput 
         style ={styles.input}
         placeholder = 'Email'
-        onChangeText={setEmail}
+        onChangeText={setEmail} />
 
-        />
         <TextInput 
         style ={styles.input}
          placeholder = 'Password'
-         onChangeText={setContraseña}
-        />
-        <View style= {styles.containerButton}>
-        <TouchableOpacity>
+         onChangeText={setContraseña} />
+
+        <View style= {styles.containerButtonAzul}>
+        <TouchableOpacity onPress= {login}>
         <Text style = {styles.buttonText}>
            Login
           </Text>     
         </TouchableOpacity>
         </View> 
-        <TouchableOpacity
-        onPress= {login}
-      >
+
+        <View style={styles.espacio}>
+        </View>
+
+        <View style= {styles.containerButtonNaranja}>
+        <TouchableOpacity onPress= {signup}>
+        <Text style = {styles.buttonText}>
+           Signup
+          </Text>     
+        </TouchableOpacity>
+        </View> 
+
+        <TouchableOpacity>
           <Image source= {googleLogo}  style= {styles.buttonGoogle} />
         </TouchableOpacity>  
     </View>
@@ -51,6 +68,9 @@ const Login = () => {
 const styles = StyleSheet.create({
   buttonText:{
       fontSize: 17
+  },
+  espacio:{
+    padding:5
   },
   buttonGoogle:{
       height: 60,
@@ -63,11 +83,18 @@ const styles = StyleSheet.create({
       width:350,
       resizeMode:"contain"
   },
-  containerButton:{
+  containerButtonAzul:{
     padding: 15,
     alignItems: 'center',
     justifyContent:'center',
-    backgroundColor: 'blue',
+    backgroundColor: '#2121F9',
+    width: 350
+    
+  },containerButtonNaranja:{
+    padding: 15,
+    alignItems: 'center',
+    justifyContent:'center',
+    backgroundColor: '#F05F42',
     width: 350
     
   },
