@@ -1,17 +1,51 @@
 
-import React, {useState} from 'react';
-import { StyleSheet, Button, View, Text, TextInput,Image, TouchableOpacity } from 'react-native';
+import React, {useState, useContext} from 'react';
+import { StyleSheet, View, Text, TextInput,Image, TouchableOpacity } from 'react-native';
 import logo from '../images/logo.png'
 import googleLogo from '../images/googleLogo.png'
 import { StatusBar } from 'expo-status-bar';
+import * as Google from 'expo-auth-session/providers/google'
+import GlobalContext, { authData } from '../components/context'
 
 
 //https://docs.expo.dev/versions/latest/sdk/auth-session/
 //https://docs.expo.dev/versions/latest/sdk/auth-session/#google
 
 
-const Login = ({navigation}) => { 
+const Login = ({navigation, route}) => { 
+  /*------------------------------LOGIN CON GOOLE-------------------------------   */
+    const [request, response, promptAsync] = Google.useAuthRequest({
+      expoClientId: '356942231803-olfl5o0sbnm9n1ampkef9e9rdomfp9fj.apps.googleusercontent.com',
+      iosClientId: 'GOOGLE_GUID.apps.googleusercontent.com',
+      androidClientId: 'GOOGLE_GUID.apps.googleusercontent.com',
+      webClientId: 'GOOGLE_GUID.apps.googleusercontent.com',
+    });
 
+
+    const {AuthData,setAuthData} = useContext(GlobalContext)
+    
+
+    React.useEffect(() => {
+      if (response?.type === 'success') {
+        const { authentication } = response;
+        console.log('authentication Data', authentication)
+  
+        // llamar a la API de google para traerme info del usuario
+        // https://www.googleapis.com/oauth2/v1/userinfo?access_token=$%7Bauthentication.accessToken%7D
+      
+        fetch(`https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=${authentication.accessToken}`)
+        .then(res => res.json())
+        .then(data=>{
+          setAuthData({
+            username: data.name,
+            email: data.email
+          })
+        })
+        console.log(AuthData)
+      }
+    }, [response]);
+  /*------------------------------{}-------------------------------   */
+    console.log(route)
 
      const login = () => {
           console.log('Dentro la función de Login')
@@ -20,7 +54,7 @@ const Login = ({navigation}) => {
      const signup = () => {
       console.log('Dentro la función de signup')
       navigation.navigate("Signup")
- }
+    }
     const [email, setEmail] = useState (null) 
     const [contraseña, setContraseña] = useState (null)
  
@@ -58,9 +92,13 @@ const Login = ({navigation}) => {
         </TouchableOpacity>
         </View> 
 
-        <TouchableOpacity>
+        <TouchableOpacity 
+        disabled ={!request} 
+        onPress={()=> {
+          promptAsync()
+          }}> 
           <Image source= {googleLogo}  style= {styles.buttonGoogle} />
-        </TouchableOpacity>  
+        </TouchableOpacity>
     </View>
     )
     };

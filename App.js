@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
 //#F05F42 --> naranja
 
 import { StatusBar } from 'expo-status-bar';
-import * as React from 'react';
+import React, {useState, useContext} from 'react';
 import { StyleSheet, Text, View, Dimensions } from 'react-native';
 import Mapa from './screens/mapa'
 import Perfil from './screens/perfil'
@@ -36,13 +36,19 @@ import Login from './screens/login'
 import {NavigationContainer} from "@react-navigation/native"
 import { createStackNavigator } from '@react-navigation/stack';
 import Signup from './screens/signup';
-
+import GlobalContext from './components/context'
 
 export default function App() {
 
+
+  const isAuthenticated = ()=> AuthData.nombre !== undefined
+
+  const [AuthData, setAuthData] = useState({})
+  
   const Stack = createStackNavigator()
 
   return (
+    <GlobalContext.Provider value={{AuthData, setAuthData}}>
     <NavigationContainer>
           <Stack.Navigator>
             <Stack.Screen name = {'Login'} component={Login}/>
@@ -51,6 +57,7 @@ export default function App() {
             <Stack.Screen name = {'Signup'} component = {Signup}/>
           </Stack.Navigator>
     </NavigationContainer>
+    </GlobalContext.Provider>
   );
 }
 

@@ -10,7 +10,9 @@ const usuario = {
     idiomaAaprender: 'español'
 }
 
-export default function Perfil() {
+export default function Perfil({navigation, route}) {
+    console.log(route)
+    //const {usuario} = route.params || {usuario: ''}
     const [username, setUsername] = useState (null) 
     const [edad, setEdad] = useState (null)
     const [idiomaNativo, setIdiomaNativo] = useState(null)
