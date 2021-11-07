@@ -49,7 +49,7 @@ const Login = ({navigation, route}) => {
 
      const login = () => {
           console.log('Dentro la función de Login')
-          navigation.navigate("Perfil")
+          navigation.navigate("Mapa")
      }
      const signup = () => {
       console.log('Dentro la función de signup')

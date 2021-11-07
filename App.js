@@ -41,7 +41,7 @@ import GlobalContext from './components/context'
 export default function App() {
 
 
-  const isAuthenticated = ()=> AuthData.nombre !== undefined
+  //const isAuthenticated = ()=> AuthData.nombre !== undefined
 
   const [AuthData, setAuthData] = useState({})
   
@@ -55,6 +55,8 @@ export default function App() {
             <Stack.Screen name ={'Perfil'} component = {Perfil}/>
             <Stack.Screen name = {'Mapa'} component = {Mapa}/>
             <Stack.Screen name = {'Signup'} component = {Signup}/>
+           
+          
           </Stack.Navigator>
     </NavigationContainer>
     </GlobalContext.Provider>
