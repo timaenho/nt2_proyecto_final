@@ -1,7 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
-import React, {useState} from 'react';
+import React, {useState,useContext} from 'react';
 import { StyleSheet, Button, View, SafeAreaView, Text, Alert, TextPropTypes, TextInput,TouchableOpacity } from 'react-native';
 import UploadImage from '../components/uploadImage';
+import GlobalContext from "../components/context"
+
 const usuario = {
     _id: 1,
     username: "Moon_Krater",
@@ -11,12 +13,12 @@ const usuario = {
 }
 
 export default function Perfil({navigation, route}) {
-    console.log(route)
+
+    const {AuthData,setAuthData} = useContext(GlobalContext)
+    const {nombre, setNombre} = useState(AuthData.username)
+
     //const {usuario} = route.params || {usuario: ''}
-    const [username, setUsername] = useState (null) 
-    const [edad, setEdad] = useState (null)
-    const [idiomaNativo, setIdiomaNativo] = useState(null)
-    const [idiomaAaprender,setIdiomaAaprender] = useState (null)
+    
 
     return (
       
@@ -25,24 +27,28 @@ export default function Perfil({navigation, route}) {
                 <UploadImage/>
         <TouchableOpacity>
             <Text style= {styles.textTitulo}>
-                Username: {usuario.username}
+                Username: {AuthData.username}
             </Text>
             </TouchableOpacity>
         <TouchableOpacity>
             <Text style= {styles.text}>
-                Edad: {usuario.edad}
+                Edad: {AuthData.edad}
                 </Text>
                 </TouchableOpacity>
         <TouchableOpacity>
             <Text style= {styles.text}>
-                Idioma nativo: {usuario.idiomaNativo}
+                Idioma nativo: {AuthData.idiomaNativo}
                 </Text >
                 </TouchableOpacity>
         <TouchableOpacity>
             <Text style= {styles.text}>
-                Idioma a aprender: {usuario.idiomaAaprender}
+                Idioma a aprender: {AuthData.idiomaAaprender}
                 </Text>
                 </TouchableOpacity>
+        <Button title="Logout"
+        onPress= {() => {
+            setAuthData({})
+        }}/>
         </View>
     )}
 

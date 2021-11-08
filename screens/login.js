@@ -23,12 +23,14 @@ const Login = ({navigation, route}) => {
 
 
     const {AuthData,setAuthData} = useContext(GlobalContext)
+   
     
 
     React.useEffect(() => {
       if (response?.type === 'success') {
         const { authentication } = response;
         console.log('authentication Data', authentication)
+     
   
         // llamar a la API de google para traerme info del usuario
         // https://www.googleapis.com/oauth2/v1/userinfo?access_token=$%7Bauthentication.accessToken%7D
@@ -36,12 +38,13 @@ const Login = ({navigation, route}) => {
         fetch(`https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=${authentication.accessToken}`)
         .then(res => res.json())
         .then(data=>{
-          setAuthData({
+          setAuthData({...authData,
             username: data.name,
-            email: data.email
+            email: data.email,
+            
           })
         })
-        console.log(AuthData)
+    
       }
     }, [response]);
   /*------------------------------{}-------------------------------   */
@@ -49,7 +52,7 @@ const Login = ({navigation, route}) => {
 
      const login = () => {
           console.log('Dentro la función de Login')
-          navigation.navigate("Mapa")
+          navigation.navigate("Perfil")
      }
      const signup = () => {
       console.log('Dentro la función de signup')

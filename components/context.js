@@ -1,9 +1,13 @@
 import React from "react";
 
 const authData = {
-    username: 'Tom',
-    email:'@email.com'
+    username: ' ',
+    email:' ',
+    idomaAaprender: ' ',
+    idiomaNativo: ' '
 }
+
+
 
 
 export {authData}
