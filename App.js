@@ -28,17 +28,20 @@ const styles = StyleSheet.create({
 //#F05F42 --> naranja
 
 import { StatusBar } from 'expo-status-bar';
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext,useEffect} from 'react';
 import { StyleSheet, Text, View, Dimensions } from 'react-native';
 import Mapa from './screens/mapa'
 import Perfil from './screens/perfil'
 import Login from './screens/login'
+import Chat from './screens/chat'
 import {NavigationContainer} from "@react-navigation/native"
 import { createStackNavigator } from '@react-navigation/stack';
 import Signup from './screens/signup';
 import GlobalContext, { authData } from './components/context'
 
 export default function App() {
+
+  
 
   const [AuthData, setAuthData] = useState(GlobalContext)
 
@@ -50,11 +53,12 @@ export default function App() {
   const Stack = createStackNavigator()
 
   return (
-    <GlobalContext.Provider value={{AuthData, setAuthData}}>
+     <GlobalContext.Provider value={{AuthData, setAuthData}}>
     <NavigationContainer>
       {
-        (isAuthenticated())    ?
+        (!isAuthenticated())    ?
         <Stack.Navigator>
+            <Stack.Screen name = {'Chat'} component = {Chat}/>
             <Stack.Screen name ={'Perfil'} component = {Perfil}/>
             <Stack.Screen name = {'Mapa'} component = {Mapa}/>
             <Stack.Screen name = {'Signup'} component = {Signup}/>
@@ -64,7 +68,9 @@ export default function App() {
         </Stack.Navigator>
       }  
     </NavigationContainer>
-    </GlobalContext.Provider>
+    </GlobalContext.Provider> 
+
+    
   );
 }
 
