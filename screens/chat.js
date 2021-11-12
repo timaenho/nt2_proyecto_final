@@ -10,7 +10,7 @@ const[messageToSend, setMessageToSend] = useState("")
 const socket = useRef(null)
 useEffect( () => {
     console.log("in useEffect")
-    socket.current = io("https://127.0.0.1:3000")
+    socket.current = io("https://172.20.176.1:3000")
   },[])
 
   const sendMessage = () => {
@@ -29,7 +29,6 @@ return (
        
     </View>
 )
-
 }
 
 const styles = StyleSheet.create({

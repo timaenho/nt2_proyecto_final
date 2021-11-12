@@ -1,4 +1,3 @@
-
 import React, {useState, useContext} from 'react';
 import { StyleSheet, View, Text, TextInput,Image, TouchableOpacity } from 'react-native';
 import logo from '../images/logo.png'

@@ -1,9 +1,8 @@
 {
   "expo": {
-    "name": "proyecto_final",
-    "slug": "proyecto_final",
+    "name": "nt2-proyecto-final",
+    "slug": "nt2-proyecto-final",
     "version": "1.0.0",
-    "scheme":"nt2",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -18,20 +17,12 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true,
-      "config": {
-        "googleMapsApiKey": ""
-    }
+      "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-        },
-        "config": {
-          "googleMaps": {
-            "apiKey": ""
-          }
       }
     },
     "web": {
