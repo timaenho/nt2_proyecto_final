@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState, useContext} from 'react';
 import { StyleSheet, Text, View, Dimensions } from 'react-native';
-import Mapa from './screens/mapa'
+//import Mapa from './screens/mapa'
 import Perfil from './screens/perfil'
 import Login from './screens/login'
 import Chat from './screens/chat'
