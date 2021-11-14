@@ -14,7 +14,7 @@ import GlobalContext, { authData } from '../components/context'
 const Login = ({navigation, route}) => { 
   /*------------------------------LOGIN CON GOOLE-------------------------------   */
     const [request, response, promptAsync] = Google.useAuthRequest({
-      expoClientId: '356942231803-olfl5o0sbnm9n1ampkef9e9rdomfp9fj.apps.googleusercontent.com',
+      expoClientId: '356942231803-soaidq3thgt14vju4l94gefu1rnhj631.apps.googleusercontent.com',
       iosClientId: 'GOOGLE_GUID.apps.googleusercontent.com',
       androidClientId: 'GOOGLE_GUID.apps.googleusercontent.com',
       webClientId: 'GOOGLE_GUID.apps.googleusercontent.com',

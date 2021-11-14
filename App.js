@@ -20,7 +20,7 @@ export default function App() {
   console.log(AuthData)
   
   const Stack = createStackNavigator()
-/*
+
   return (
     <GlobalContext.Provider value={{AuthData, setAuthData}}>
     <NavigationContainer>
@@ -28,19 +28,20 @@ export default function App() {
         (isAuthenticated())    ?
         <Stack.Navigator>
             <Stack.Screen name ={'Perfil'} component = {Perfil}/>
-            <Stack.Screen name = {'Mapa'} component = {Mapa}/>
+           {/*  <Stack.Screen name = {'Mapa'} component = {Mapa}/> */}
             <Stack.Screen name = {'Signup'} component = {Signup}/>
           </Stack.Navigator>    :
           <Stack.Navigator>
-          <Stack.Screen name = {'Login'} component={Login}/>
+         {/*  <Stack.Screen name = {'Login'} component={Login}/> */}
+         <Stack.Screen name = {'Chat'} component = {Chat}/>
         </Stack.Navigator>
       }  
     </NavigationContainer>
     </GlobalContext.Provider>
   );
-  */
+ 
 
-  return (
+  /* return (
     <GlobalContext.Provider value={{AuthData, setAuthData}}>
     <NavigationContainer>
      
@@ -54,7 +55,7 @@ export default function App() {
     </NavigationContainer>
     </GlobalContext.Provider>
      
-  );
+  ); */
 }
 const styles = StyleSheet.create({
   container: {

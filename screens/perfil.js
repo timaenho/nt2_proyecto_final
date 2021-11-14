@@ -45,7 +45,7 @@ export default function Perfil({navigation, route}) {
                 Idioma a aprender: {AuthData.idiomaAaprender}
                 </Text>
                 </TouchableOpacity>
-        <Button title="Logout"
+         <Button title="Logout"
         onPress= {() => {
             setAuthData({})
         }}/>
