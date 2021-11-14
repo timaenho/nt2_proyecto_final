@@ -9,7 +9,7 @@ import {NavigationContainer} from "@react-navigation/native"
 import { createStackNavigator } from '@react-navigation/stack';
 import Signup from './screens/signup';
 import GlobalContext, { authData } from './components/context'
-
+import PerfilExt from './screens/perfilexterno'
 export default function App() {
 
   const [AuthData, setAuthData] = useState(GlobalContext)
@@ -45,6 +45,8 @@ export default function App() {
     <NavigationContainer>
      
         <Stack.Navigator>
+        <Stack.Screen name = {'Mapa'} component={Mapa}/>
+        <Stack.Screen name = {'PerfilExt'} component={PerfilExt}/>
         <Stack.Screen name = {'Chat'} component = {Chat}/>
         <Stack.Screen name = {'Signup'} component = {Signup}/>
         <Stack.Screen name ={'Perfil'} component = {Perfil}/>

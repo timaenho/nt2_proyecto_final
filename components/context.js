@@ -4,7 +4,8 @@ const authData = {
     username: ' ',
     email:' ',
     idomaAaprender: ' ',
-    idiomaNativo: ' '
+    idiomaNativo: ' ',
+    location:{}
 }
 
 
