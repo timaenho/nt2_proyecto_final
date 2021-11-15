@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState, useContext} from 'react';
 import { StyleSheet, Text, View, Dimensions } from 'react-native';
-import Mapa from './screens/mapa'
+// import Mapa from './screens/mapa'
 import Perfil from './screens/perfil'
 import Login from './screens/login'
 import Chat from './screens/chat'
@@ -49,7 +49,7 @@ export default function App() {
     <NavigationContainer>
      
         <Stack.Navigator>
-        <Stack.Screen name = {'Mapa'} component={Mapa}/>
+        {/* <Stack.Screen name = {'Mapa'} component={Mapa}/> */}
         <Stack.Screen name = {'PerfilExt'} component={PerfilExt}/>
         <Stack.Screen name = {'Chat'} component = {Chat}/>
         <Stack.Screen name = {'Signup'} component = {Signup}/>

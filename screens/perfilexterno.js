@@ -1,6 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState,useContext} from 'react';
 import { StyleSheet, Button,Image, View, SafeAreaView, Text, Alert, TextPropTypes, TextInput,TouchableOpacity } from 'react-native';
+
+
 import GlobalContext from "../components/context"
 
 import hombre from '../images/hombre-gorra-camara-1.jpg'
@@ -31,6 +33,7 @@ export default function perfilexterno({navigation, route}) {
             </Text>
             <Button title="empezar a chatear!"
                 onPress= {() => {
+                
                 navigation.navigate("Chat")
             }}/>
         </View>

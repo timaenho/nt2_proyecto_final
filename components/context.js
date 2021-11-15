@@ -1,7 +1,7 @@
 import React from "react";
 
 const authData = {
-    username: ' ',
+    username: 'Tom Maenhout',
     email:' ',
     idomaAaprender: ' ',
     idiomaNativo: ' ',
