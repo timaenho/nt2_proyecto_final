@@ -17,20 +17,17 @@ const Login = ({navigation, route}) => {
       expoClientId: '356942231803-soaidq3thgt14vju4l94gefu1rnhj631.apps.googleusercontent.com',
       iosClientId: 'GOOGLE_GUID.apps.googleusercontent.com',
       androidClientId: 'GOOGLE_GUID.apps.googleusercontent.com',
-      webClientId: 'GOOGLE_GUID.apps.googleusercontent.com',
+      webClientId: '356942231803-soaidq3thgt14vju4l94gefu1rnhj631.apps.googleusercontent.com',
     });
 
-
     const {AuthData,setAuthData} = useContext(GlobalContext)
-   
-    
 
     React.useEffect(() => {
       if (response?.type === 'success') {
         const { authentication } = response;
         console.log('authentication Data', authentication)
-     
-  
+        
+        
         // llamar a la API de google para traerme info del usuario
         // https://www.googleapis.com/oauth2/v1/userinfo?access_token=$%7Bauthentication.accessToken%7D
       

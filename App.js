@@ -1,7 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState, useContext} from 'react';
 import { StyleSheet, Text, View, Dimensions } from 'react-native';
-// import Mapa from './screens/mapa'
+import Mapa from './screens/mapa'
+import {createStore,applyMiddleware} from 'redux'
+import createSocketIoMiddleware from 'redux-socket.io';
+import io from 'socket.io-client';
 import Perfil from './screens/perfil'
 import Login from './screens/login'
 import Chat from './screens/chat'
@@ -10,8 +13,27 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Signup from './screens/signup';
 import GlobalContext, { authData } from './components/context'
 import PerfilExt from './screens/perfilexterno'
+import {Provider} from 'react-redux'
 
+const socket = io("https://e5a6-2800-810-53e-2dc-a490-74bc-bb2f-6a2d.ngrok.io/")
 
+const socketIoMiddleware = createSocketIoMiddleware(socket,"server/") //!
+//https://www.youtube.com/watch?v=CVpUuw9XSjY
+function reducer(state = {}, action) {
+  switch (action.type) {
+    case "message":
+      return { ...state, message: action.data };
+    default:
+      return state;
+  }
+}
+
+const store = applyMiddleware(socketIoMiddleware)(createStore)(reducer);
+
+store.subscribe(() => {
+  console.log("new state", store.getState());
+});
+store.dispatch({ type: "server/hello", data: "Hello!" });
 
 export default function App() {
 
@@ -24,44 +46,49 @@ export default function App() {
   
   const Stack = createStackNavigator()
 
-  /* return (
+  return (
+    <Provider store={store}>
     <GlobalContext.Provider value={{AuthData, setAuthData}}>
     <NavigationContainer>
       {
         (isAuthenticated())    ?
         <Stack.Navigator>
-            <Stack.Screen name ={'Perfil'} component = {Perfil}/>
-           <Stack.Screen name = {'Mapa'} component = {Mapa}/>
+            <Stack.Screen name ={'Perfil'} component = {Perfil}/> 
+            <Stack.Screen name = {'Mapa'} component = {Mapa}/>
             <Stack.Screen name = {'Signup'} component = {Signup}/>
+       
           </Stack.Navigator>    :
           <Stack.Navigator>
-         {/*  <Stack.Screen name = {'Login'} component={Login}/> */
-  //        <Stack.Screen name = {'Chat'} component = {Chat}/>
-  //       </Stack.Navigator>
-  //     }  
-  //   </NavigationContainer>
-  //   </GlobalContext.Provider>
-  // ); */
- 
+       {/*     <Stack.Screen name = {'Login'} component={Login}/>  */}
+           <Stack.Screen name = {'PerfilExt'} component = {PerfilExt}/>
+           <Stack.Screen name = {'Chat'} component = {Chat}/>
+        </Stack.Navigator>
+      }  
+     </NavigationContainer>
+     </GlobalContext.Provider>
+     </Provider>
+   );
+    }
 
-  return (
+ /*  return (
     <GlobalContext.Provider value={{AuthData, setAuthData}}>
     <NavigationContainer>
      
         <Stack.Navigator>
-        {/* <Stack.Screen name = {'Mapa'} component={Mapa}/> */}
+        <Stack.Screen name = {'Mapa'} component={Mapa}/>
+           <Stack.Screen name = {'Login'} component={Login}/>
         <Stack.Screen name = {'PerfilExt'} component={PerfilExt}/>
         <Stack.Screen name = {'Chat'} component = {Chat}/>
         <Stack.Screen name = {'Signup'} component = {Signup}/>
         <Stack.Screen name ={'Perfil'} component = {Perfil}/>
-        <Stack.Screen name = {'Login'} component={Login}/>
+     
         </Stack.Navigator>
 
     </NavigationContainer>
     </GlobalContext.Provider>
      
   );
-  }
+  } */
 
 
 const styles = StyleSheet.create({

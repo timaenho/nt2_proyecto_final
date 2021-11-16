@@ -6,6 +6,7 @@ import { useState, useEffect,useContext } from 'react';
 import {permission,location} from 'expo';
 import GlobalContext, { authData } from '../components/context'
 
+//https://github.com/react-native-maps/react-native-maps
 
   const markers = [
     {
@@ -90,10 +91,9 @@ export default function Mapa({navigation}) {
     console.log(AuthData)
 
     return (
+     
       <MapView
-      style={styles.container}
-    >
-    
+      style={styles.container}>
       {markers.map((marker, index) => (
         <MapView.Marker key={index}
           coordinate={marker.coordinates}
@@ -102,8 +102,7 @@ export default function Mapa({navigation}) {
           onCalloutPress={PerfilExt}
         />
       ))}
-      
-      
+
       
     </MapView>
     );
