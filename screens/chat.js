@@ -13,8 +13,8 @@ const[recMessages, setRecMessages] =useState([])
 const dispatch = useDispatch();
 const [username, setUsername] = useState(authData.username)
 const [avatar, setAvatar] = useState(authData.imagen)
-
 const socket = useRef(null)
+
 useEffect(() => {
   socket.current = io("https://e5a6-2800-810-53e-2dc-a490-74bc-bb2f-6a2d.ngrok.io/");
   socket.current.emit("join",username,avatar)
