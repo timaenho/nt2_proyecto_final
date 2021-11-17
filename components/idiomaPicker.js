@@ -8,7 +8,7 @@ export default function idiomaPicker() {
     const handleValueChange=(itemValue, itemIndex) =>setAuthData({...AuthData, idiomaNativo: itemValue})
     return (
         
-   
+   //hola que onda
             
             <Picker 
                 mode= {'dropdown'}
