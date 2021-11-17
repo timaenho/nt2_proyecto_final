@@ -37,6 +37,8 @@ const Login = ({navigation, route}) => {
           setAuthData({...authData,
             username: data.name,
             email: data.email,
+            esOnline:true,
+            imagen:data.picture
             
           })
         })
@@ -50,19 +52,19 @@ const Login = ({navigation, route}) => {
           console.log('Dentro la función de Login')
           navigation.navigate("Perfil")
      }
-     const signup = () => {
+   /*   const signup = () => {
       console.log('Dentro la función de signup')
       navigation.navigate("Signup")
     }
     const [email, setEmail] = useState (null) 
-    const [contraseña, setContraseña] = useState (null)
+    const [contraseña, setContraseña] = useState (null) */
  
     return( 
       
     <View style= {styles.container}>
       <StatusBar style = {'auto'}/>
        <Image source= {logo} style={styles.logo}/>
-        <TextInput 
+      {/*   <TextInput 
         style ={styles.input}
         placeholder = 'Email'
         onChangeText={setEmail} />
@@ -89,7 +91,7 @@ const Login = ({navigation, route}) => {
            Signup
           </Text>     
         </TouchableOpacity>
-        </View> 
+        </View>  */}
 
         <TouchableOpacity 
         disabled ={!request} 

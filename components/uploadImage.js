@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Image, View, Platform, TouchableOpacity, Text, StyleSheet } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker'
+import GlobalContext, { authData } from '../components/context'
 
 export default function UploadImage() {
+  const {AuthData,setAuthData} = useContext(GlobalContext)
   const [image, setImage] = useState(null);
   /* //const addImage=()=>{}; */
   const addImage = async () => {
@@ -18,6 +20,10 @@ export default function UploadImage() {
     if(!_image.cancelled){
         setImage(_image.uri)
     }
+    setAuthData({...AuthData,
+        imagen: _image.uri
+      }) 
+    console.log(AuthData)
   };
  
   return (
@@ -28,7 +34,7 @@ export default function UploadImage() {
                     
                     <View style={imageUploaderStyles.uploadBtnContainer}>
                         <TouchableOpacity onPress={addImage} style={imageUploaderStyles.uploadBtn} >
-                            <Text>{image ? 'Edit' : 'Upload'} Image</Text>
+                            <Text>{image ? 'Editar' : 'Subir'} Avatar</Text>
                             <AntDesign name="camera" size={20} color="black" />
                         </TouchableOpacity>
                     </View>

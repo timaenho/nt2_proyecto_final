@@ -72,7 +72,7 @@ import GlobalContext, { authData } from '../components/context'
       else if (location) {
         valor = JSON.stringify(location);
         reporte = JSON.parse(valor);
-        setAuthData({...authData,
+        setAuthData({...AuthData,
         location: valor
       })
       }

@@ -32,11 +32,6 @@ export default function Perfil({navigation, route}) {
             </TouchableOpacity>
         <TouchableOpacity>
             <Text style= {styles.text}>
-                Edad: {AuthData.edad}
-                </Text>
-                </TouchableOpacity>
-        <TouchableOpacity>
-            <Text style= {styles.text}>
                 Idioma nativo: {AuthData.idiomaNativo}
                 </Text >
                 </TouchableOpacity>
@@ -48,6 +43,11 @@ export default function Perfil({navigation, route}) {
          <Button title="Logout"
         onPress= {() => {
             setAuthData({})
+        }}/>
+        <Button title="Buscar personas"
+        onPress= {() => {
+       
+            navigation.navigate("Mapa") 
         }}/>
         </View>
     )}
