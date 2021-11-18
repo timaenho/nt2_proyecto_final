@@ -1,5 +1,5 @@
-import React, {useState, useContext} from 'react';
-import { StyleSheet, View, Text, TextInput,Image, TouchableOpacity } from 'react-native';
+import React, {useContext} from 'react';
+import { StyleSheet, View,Image, TouchableOpacity } from 'react-native';
 import logo from '../images/logo.png'
 import googleLogo from '../images/googleLogo.png'
 import { StatusBar } from 'expo-status-bar';

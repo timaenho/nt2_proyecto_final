@@ -4,7 +4,7 @@ import avatar from "../images/hombre-gorra-camara-1.jpg"
 const authData = {
     username: undefined,
     email:' ',
-    idomaAaprender: ' ',
+    idiomaAaprender: ' ',
     idiomaNativo: ' ',
     imagen: undefined,
     location:{},

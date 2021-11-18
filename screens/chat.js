@@ -17,7 +17,7 @@ const [avatar, setAvatar] = useState(AuthData.imagen)
 const socket = useRef(null)
 
 useEffect(() => {
-  socket.current = io("https://0b21-2800-810-53e-2dc-a490-74bc-bb2f-6a2d.ngrok.io");
+  socket.current = io("https://1dd3-2800-810-53e-2dc-3cc5-e37b-d47a-6488.ngrok.io");
   socket.current.emit("join",username,avatar)
   dispatch({type:"server/join",data:{username: username, avatar:avatar}})
   socket.current.on("message",message =>{

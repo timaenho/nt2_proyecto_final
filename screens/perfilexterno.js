@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
-import React, {useState,useContext} from 'react';
-import { StyleSheet, Button,Image, View, SafeAreaView, Text, Alert, TextPropTypes, TextInput,TouchableOpacity } from 'react-native';
+import React, {} from 'react';
+import { StyleSheet, Button,Image, View, Text} from 'react-native';
 
 
 import GlobalContext from "../components/context"

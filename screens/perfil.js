@@ -1,8 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState,useContext} from 'react';
-import { StyleSheet, Button, View, SafeAreaView, Text, Alert, TextPropTypes, TextInput,TouchableOpacity } from 'react-native';
+import { StyleSheet, Button, View, Text,TouchableOpacity } from 'react-native';
 import UploadImage from '../components/uploadImage';
 import GlobalContext from "../components/context"
+import IdiomaPicker from "../components/idiomaPicker"
 
 const usuario = {
     _id: 1,
@@ -16,7 +17,7 @@ export default function Perfil({navigation, route}) {
 
     const {AuthData,setAuthData} = useContext(GlobalContext)
     const {nombre, setNombre} = useState(AuthData.username)
-
+   
     //const {usuario} = route.params || {usuario: ''}
     
 
@@ -30,16 +31,14 @@ export default function Perfil({navigation, route}) {
                 Username: {AuthData.username}
             </Text>
             </TouchableOpacity>
-        <TouchableOpacity>
-            <Text style= {styles.text}>
-                Idioma nativo: {AuthData.idiomaNativo}
-                </Text >
-                </TouchableOpacity>
-        <TouchableOpacity>
-            <Text style= {styles.text}>
-                Idioma a aprender: {AuthData.idiomaAaprender}
-                </Text>
-                </TouchableOpacity>
+             <Text style= {styles.text}>
+                Idioma nativo: 
+                </Text > 
+                <IdiomaPicker esNativo={true}/>
+           <Text style= {styles.text}>
+                Idioma a aprender: 
+                </Text> 
+                <IdiomaPicker esNativo={false}/>
          <Button title="Logout"
         onPress= {() => {
             setAuthData({})

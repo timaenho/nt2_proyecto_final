@@ -15,7 +15,8 @@ import GlobalContext, { authData } from './components/context'
 import PerfilExt from './screens/perfilexterno'
 import {Provider} from 'react-redux'
 
-const socket = io("https://0b21-2800-810-53e-2dc-a490-74bc-bb2f-6a2d.ngrok.io")
+
+const socket = io("https://1dd3-2800-810-53e-2dc-3cc5-e37b-d47a-6488.ngrok.io")
 
 const socketIoMiddleware = createSocketIoMiddleware(socket,"server/") //!
 //https://www.youtube.com/watch?v=CVpUuw9XSjY
@@ -57,9 +58,10 @@ export default function App() {
             <Stack.Screen name = {'Mapa'} component = {Mapa}/>
             <Stack.Screen name = {'Signup'} component = {Signup}/>
             <Stack.Screen name = {'PerfilExt'} component = {PerfilExt}/>
-           <Stack.Screen name = {'Chat'} component = {Chat}/>
-       
-          </Stack.Navigator>    :
+            <Stack.Screen name = {'Chat'} component = {Chat}/>
+          </Stack.Navigator>
+         
+          :
           <Stack.Navigator>
            <Stack.Screen name = {'Login'} component={Login}/>  
           
@@ -77,7 +79,7 @@ export default function App() {
      
         <Stack.Navigator>
         <Stack.Screen name = {'Mapa'} component={Mapa}/>
-           <Stack.Screen name = {'Login'} component={Login}/>
+        <Stack.Screen name = {'Login'} component={Login}/>
         <Stack.Screen name = {'PerfilExt'} component={PerfilExt}/>
         <Stack.Screen name = {'Chat'} component = {Chat}/>
         <Stack.Screen name = {'Signup'} component = {Signup}/>
