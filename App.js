@@ -14,9 +14,9 @@ import Signup from './screens/signup';
 import GlobalContext, { authData } from './components/context'
 import PerfilExt from './screens/perfilexterno'
 import {Provider} from 'react-redux'
+import {Constant} from './service/constantes'
 
-
-const socket = io("https://1dd3-2800-810-53e-2dc-3cc5-e37b-d47a-6488.ngrok.io")
+const socket = io(Constant.NGR_KEY)
 
 const socketIoMiddleware = createSocketIoMiddleware(socket,"server/") //!
 //https://www.youtube.com/watch?v=CVpUuw9XSjY

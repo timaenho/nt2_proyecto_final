@@ -32,13 +32,13 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
+      alignContent:'center'
     },
     pickerStyles:{
         
-        width:'70%',
+        
         backgroundColor:'white',
-        color:'black'
+        color:'black',
+        alignContent:'center',
     }
   });

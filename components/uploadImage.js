@@ -45,6 +45,8 @@ export default function UploadImage() {
 
 const imageUploaderStyles=StyleSheet.create({
     container:{
+        alignContent:'center',   
+
         elevation:2,
         height:300,
         width:200, 
@@ -54,6 +56,7 @@ const imageUploaderStyles=StyleSheet.create({
         overflow:'hidden',
     },
     uploadBtnContainer:{
+        alignContent:'center',
         opacity:0.7,
         position:'absolute',
         right:0,
@@ -63,6 +66,7 @@ const imageUploaderStyles=StyleSheet.create({
         height:'25%',
     },
     uploadBtn:{
+        alignContent:'center',
         display:'flex',
         alignItems:"center",
         justifyContent:'center'
