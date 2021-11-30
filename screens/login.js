@@ -25,7 +25,7 @@ const Login = ({navigation, route}) => {
     React.useEffect(() => {
       if (response?.type === 'success') {
         const { authentication } = response;
-        console.log('authentication Data', authentication)
+        console.log('authentication Data', authentication.idToken)
         
         
         // llamar a la API de google para traerme info del usuario
@@ -39,10 +39,12 @@ const Login = ({navigation, route}) => {
             email: data.email,
             esOnline:true,
             imagen:data.picture
-            
           })
         })
-    
+        
+
+
+
       }
     }, [response]);
   /*------------------------------{}-------------------------------   */

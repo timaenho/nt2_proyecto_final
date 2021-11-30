@@ -41,17 +41,17 @@ export default function perfilexterno({navigation, route}) {
 
     const styles = StyleSheet.create({
         container:{
-            padding: 30,
-            alignItems: 'center',
-            justifyContent:'center',
-            backgroundColor: 'white'
-        },
-        textTitulo:{
-            marginVertical:20,
-            fontSize:18
-        },
-        text:{
-            marginVertical:5,
-            fontSize:14
-        }
-    })
+        padding: 30,
+        alignItems: 'center',
+        justifyContent:'center',
+        backgroundColor: 'white'
+    },
+    textTitulo:{
+        marginVertical:20,
+        fontSize:18
+    },
+    text:{
+        marginVertical:5,
+        fontSize:14
+    }
+})

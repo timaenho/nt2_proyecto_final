@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState,useContext} from 'react';
-import { StyleSheet, Button, View, Text,TouchableOpacity } from 'react-native';
+import { StyleSheet, Button, View,ScrollView,SafeAreaView, Text,TouchableOpacity } from 'react-native';
 import UploadImage from '../components/uploadImage';
 import GlobalContext from "../components/context"
 import IdiomaPicker from "../components/idiomaPicker"
@@ -22,15 +22,15 @@ export default function Perfil({navigation, route}) {
     
 
     return (
-      
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
+        <ScrollView style={styles.scrollView}>
             <StatusBar style= {'auto'}/>
-                <UploadImage/>
-        <TouchableOpacity>
+                
+            <View style={styles.cont}><UploadImage /></View>
             <Text style= {styles.textTitulo}>
                 Username: {AuthData.username}
             </Text>
-            </TouchableOpacity>
+        
              <Text style= {styles.text}>
                 Idioma nativo: 
                 </Text > 
@@ -38,32 +38,62 @@ export default function Perfil({navigation, route}) {
            <Text style= {styles.text}>
                 Idioma a aprender: 
                 </Text> 
-                <IdiomaPicker esNativo={false}/>
-         <Button title="Logout"
-        onPress= {() => {
-            setAuthData({})
-        }}/>
-        <Button title="Buscar personas"
-        onPress= {() => {
-       
-            navigation.navigate("Mapa") 
-        }}/>
-        </View>
+                <IdiomaPicker esNativo={false} />
+                
+                <View style={styles.cont}>
+                    <Button 
+                    title="Buscar personas"
+                    
+                    style= {styles.buttons}
+                    onPress= {() => {
+                
+                        navigation.navigate("Mapa") 
+                    }}/>
+                </View>
+                <View style={{marginVertical:20}}></View>
+                <View style={styles.logout}>
+                    <Button title="Logout"
+                    onPress= {() => {
+                        setAuthData({})
+                    }}/>
+                </View>
+                <View style={{marginVertical:20}}></View>
+        </ScrollView>
+        </SafeAreaView>
+        
     )}
 
     const styles = StyleSheet.create({
         container:{
-            padding: 30,
-            alignItems: 'center',
-            justifyContent:'center',
-            backgroundColor: 'white'
+            flex: 1,
+            paddingTop: StatusBar.currentHeight
+            
         },
         textTitulo:{
+            textAlign:'center',
             marginVertical:20,
             fontSize:18
         },
+        cont:{
+            marginVertical:20,
+            alignContent: 'center',
+            margin:100            
+        },
+        logout:{
+            marginVertical:10,
+            alignContent: 'center',
+            margin:80            
+        },
         text:{
-            marginVertical:5,
-            fontSize:14
-        }
+            fontSize:16,
+            textAlign:'center'
+        },
+        buttons:{
+            margin:100,
+            textAlign:'center'
+        },
+        scrollView: {
+            
+            backgroundColor: 'white'
+        },
     })
