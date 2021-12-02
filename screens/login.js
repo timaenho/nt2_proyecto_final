@@ -1,10 +1,12 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import { StyleSheet, View,Image, TouchableOpacity } from 'react-native';
 import logo from '../images/logo.png'
 import googleLogo from '../images/googleLogo.png'
 import { StatusBar } from 'expo-status-bar';
 import * as Google from 'expo-auth-session/providers/google'
 import GlobalContext, { authData } from '../components/context'
+
+import { isSameUser } from 'react-native-gifted-chat/lib/utils';
 
 
 //https://docs.expo.dev/versions/latest/sdk/auth-session/
@@ -40,13 +42,17 @@ const Login = ({navigation, route}) => {
             esOnline:true,
             imagen:data.picture
           })
+
         })
-        
-
-
-
-      }
+      
+        // mandar datos a la base
+   
+    }
     }, [response]);
+
+    useEffect(() => {
+     
+    },[AuthData])
   /*------------------------------{}-------------------------------   */
     console.log(route)
 

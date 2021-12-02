@@ -1,10 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
-import React, {useState,useContext} from 'react';
+import React, {useState,useContext, useEffect} from 'react';
 import { StyleSheet, Button, View,ScrollView,SafeAreaView, Text,TouchableOpacity } from 'react-native';
 import UploadImage from '../components/uploadImage';
 import GlobalContext from "../components/context"
 import IdiomaPicker from "../components/idiomaPicker"
-
+import {Constant} from '../service/constantes'
 const usuario = {
     _id: 1,
     username: "Moon_Krater",
@@ -13,14 +13,19 @@ const usuario = {
     idiomaAaprender: 'español'
 }
 
+
 export default function Perfil({navigation, route}) {
 
     const {AuthData,setAuthData} = useContext(GlobalContext)
     const {nombre, setNombre} = useState(AuthData.username)
    
     //const {usuario} = route.params || {usuario: ''}
-    
-
+    useEffect(() => {
+        const url = Constant.BASE_URL + "/users/" + AuthData.email
+        fetch(url)
+        .then(response => response.json()) 
+        .then(data => console.log("DAAAAATAAAA",data));
+    },[])
     return (
         <SafeAreaView style={styles.container}>
         <ScrollView style={styles.scrollView}>

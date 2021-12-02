@@ -2,8 +2,9 @@ import React from "react";
 import avatar from "../images/hombre-gorra-camara-1.jpg"
 
 const authData = {
-    username: undefined,
-    email:' ',
+    _id:"",
+    username: "",
+    email:'',
     id:'',
     idiomaAaprender: ' ',
     idiomaNativo: ' ',
