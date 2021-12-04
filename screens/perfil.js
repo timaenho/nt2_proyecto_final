@@ -18,14 +18,48 @@ export default function Perfil({navigation, route}) {
 
     const {AuthData,setAuthData} = useContext(GlobalContext)
     const {nombre, setNombre} = useState(AuthData.username)
-   
+    const[estaEnLaBase, setEstaEnLaBase] = useState(false)
+
+    const post = () => {
+        console.log("estaEnLaBase " + estaEnLaBase)
+        if(!estaEnLaBase){
+            const url = Constant.BASE_URL + "/users/"
+            fetch(url, {
+                method: 'POST', 
+                body: JSON.stringify(AuthData), // data can be `string` or {object}!
+                headers:{
+                  'Content-Type': 'application/json'
+                }
+              }).then(res => res.json())
+              .catch(error => console.error('Error:', error))
+              .then(response => console.log('Success:', response));
+
+        }
+    }
+
     //const {usuario} = route.params || {usuario: ''}
     useEffect(() => {
         const url = Constant.BASE_URL + "/users/" + AuthData.email
         fetch(url)
-        .then(response => response.json()) 
-        .then(data => console.log("DAAAAATAAAA",data));
-    },[])
+        .then(response => {
+            console.log("Respooonsse " + response
+             )
+             return (response.json())
+        }) 
+        .then(data => 
+            {                
+                console.log("DAAAAATAAAA",data)
+                setEstaEnLaBase(true)
+             });
+    return (
+        post()
+    ) 
+            },[])
+   
+        
+        
+   
+     
     return (
         <SafeAreaView style={styles.container}>
         <ScrollView style={styles.scrollView}>
