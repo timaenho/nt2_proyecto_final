@@ -44,8 +44,8 @@ export default function App() {
 
   const isAuthenticated = ()=> AuthData.username !== undefined
 
-/*   console.log(isAuthenticated())
-  console.log(AuthData) */
+   console.log(isAuthenticated())
+  console.log(AuthData) 
   
   const Stack = createStackNavigator()
 

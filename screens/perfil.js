@@ -4,6 +4,7 @@ import { StyleSheet, Button, View,ScrollView,SafeAreaView, Text,TouchableOpacity
 import UploadImage from '../components/uploadImage';
 import GlobalContext from "../components/context"
 import IdiomaPicker from "../components/idiomaPicker"
+import * as Location from 'expo-location';
 import {Constant} from '../service/constantes'
 const usuario = {
     _id: 1,
@@ -12,7 +13,45 @@ const usuario = {
     idiomaNativo: 'holandes',
     idiomaAaprender: 'español'
 }
+const Localizacion = () =>{
+    const {AuthData,setAuthData} = useContext(GlobalContext)
+    const [location, setLocation] = useState(null);
+    const [errorMsg, setErrorMsg] = useState(null);
+   
+    useEffect(() => {
+      (async () => {
+        let { status } = await Location.requestForegroundPermissionsAsync();
+        if (status !== 'granted') {
+          setErrorMsg('Permission to access location was denied');
+          return;
+        }
+  
+        let location = await Location.getCurrentPositionAsync({});
+        console.log(location)
+        setLocation(location);
+      })();
+    }, []);
+  
 
+    useEffect(() => {
+      let valor = 'waiting...';
+      let reporte = null;
+  
+      if (errorMsg) {
+        valor = errorMsg;
+      }
+      else if (location) {
+        valor = JSON.stringify(location);
+        reporte = JSON.parse(valor);
+        setAuthData({...AuthData,
+            coordinates: {
+                latitude: reporte.coords.latitude,
+                longitude: reporte.coords.longitude
+        }})
+      }
+
+    }, [location]);
+}
 
 export default function Perfil({navigation, route}) {
 
@@ -20,6 +59,7 @@ export default function Perfil({navigation, route}) {
     const {nombre, setNombre} = useState(AuthData.username)
     const[estaEnLaBase, setEstaEnLaBase] = useState(false)
 
+    Localizacion()
 /*     const post = () => {
         console.log("estaEnLaBase " + estaEnLaBase)
         if(!estaEnLaBase){
@@ -56,7 +96,7 @@ export default function Perfil({navigation, route}) {
     ) 
             },[]) */
    
-        
+ 
         
    
      

@@ -1,11 +1,13 @@
-import * as Location from 'expo-location';
 import * as React from 'react';
 import MapView from 'react-native-maps';
 import { StyleSheet, Text, View, Dimensions ,Platform} from 'react-native';
-import { useState, useEffect,useContext } from 'react';
+import { useState, useEffect,useContext,useRef } from 'react';
 import {permission,location} from 'expo';
 import GlobalContext, { authData } from '../components/context'
-import { useSelector } from 'react-redux';
+import { useSelector,useDispatch } from 'react-redux';
+import io from "socket.io-client"
+import {Constant} from '../service/constantes'
+
 
 
 
@@ -13,7 +15,7 @@ import { useSelector } from 'react-redux';
 
 
 
-  const markers = [
+/*   const markers = [
     {
       coordinates: {
         latitude: -34.524548,
@@ -48,75 +50,71 @@ import { useSelector } from 'react-redux';
       description: "Español"
     },
   ]
-  const Localizacion = () =>{
-    const {AuthData,setAuthData} = useContext(GlobalContext)
-    const [location, setLocation] = useState(null);
-    const [errorMsg, setErrorMsg] = useState(null);
-
-    useEffect(() => {
-      (async () => {
-        let { status } = await Location.requestForegroundPermissionsAsync();
-        if (status !== 'granted') {
-          setErrorMsg('Permission to access location was denied');
-          return;
-        }
-  
-        let location = await Location.getCurrentPositionAsync({});
-        console.log(location)
-        setLocation(location);
-      })();
-    }, []);
-  
-
-    useEffect(() => {
-      let valor = 'waiting...';
-      let reporte = null;
-  
-      if (errorMsg) {
-        valor = errorMsg;
-      }
-      else if (location) {
-        valor = JSON.stringify(location);
-        reporte = JSON.parse(valor);
-        setAuthData({...AuthData,
-          locationLatitude: reporte.coords.latitude,
-          locationLongitude: reporte.coords.longitude
-      })
-      }
-
-    }, [location]);
-}
+ */
 
 export default function Mapa({navigation}) {
     const {AuthData,setAuthData} = useContext(GlobalContext)
-    const markers2 = useSelector(state => state.usersOnline)
+
+
+    let markers2 = useSelector(state => state.usersOnline)
+     if(markers2 == undefined){
+       markers2 =  [{
+        coordinates: {
+          latitude: 45.521016,
+          longitude: -122.6561917
+        },
+        username: "Mauro Pavesi",
+        idiomaAaprender: "Español"
+      }]
+    } 
+
+    const [username, setUsername] = useState(AuthData.username)
+    const [avatar, setAvatar] = useState(AuthData.imagen)
+    const [locationLatitude, setLocationLatitude] = useState(AuthData.coordinates.latitude)
+    const [locationLongitude, setLocationLongitude] = useState(AuthData.coordinates.longitude)
+    const [idiomaAaprender, setIdiomaAaprender] = useState(AuthData.idiomaAaprender)
+    const socket = useRef(null)
+    const dispatch = useDispatch();
+   
     console.log("usersOnline " + markers2)
     
       
-    Localizacion();
+   
     const PerfilExt = () => {
       console.log("dentro la función de perfil")
-      console.log("latitude " + AuthData.locationLatitude)
-      console.log("longitude " + AuthData.locationLongitude)
+      console.log("latitude " + AuthData.coordinates.latitude)
+      console.log("longitude " + AuthData.coordinates.longitude)
       navigation.navigate("PerfilExt")
     }
-
+    useEffect(() => {
+ 
+      socket.current = io(Constant.NGR_KEY);
+      socket.current.emit("join",username,avatar)
+    
+      dispatch({type:"server/join",data:{
+        username: username, 
+        avatar:avatar, 
+        coordinates: {
+          latitude: locationLatitude, 
+          longitude: locationLongitude, 
+        },
+        idiomaAaprender:idiomaAaprender}})
+    }, [])
    
 
     return (
      
       <MapView
       style={styles.container}>
-      {markers.map((markers, index) => (
+      
+      {markers2.map((markers2, index) => (
         <MapView.Marker key={index}
-          coordinate={markers.coordinates}
-          title={markers.title}
-          description={markers.description}
+          coordinate= {markers2.coordinates}
+          title={markers2.username}
+          description={markers2.idiomaAaprender}
           onCalloutPress={PerfilExt}
         />
       ))}
-
-      
     </MapView>
     );
   }
