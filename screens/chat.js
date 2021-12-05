@@ -15,12 +15,23 @@ const dispatch = useDispatch();
 const {AuthData,setAuthData} = useContext(GlobalContext)
 const [username, setUsername] = useState(AuthData.username)
 const [avatar, setAvatar] = useState(AuthData.imagen)
+const [locationLatitude, setLocationLatitude] = useState(AuthData.locationLatitude)
+const [locationLongitude, setLocationLongitude] = useState(AuthData.locationLongitude)
+const [idiomaAaprender, setIdiomaAaprender] = useState(AuthData.idiomaAaprender)
 const socket = useRef(null)
+
 
 useEffect(() => {
   socket.current = io(Constant.NGR_KEY);
   socket.current.emit("join",username,avatar)
-  dispatch({type:"server/join",data:{username: username, avatar:avatar}})
+
+  dispatch({type:"server/join",data:{
+    username: username, 
+    avatar:avatar, 
+    locationLatitude: locationLatitude, 
+    locationLongitude: locationLongitude, 
+    idiomaAaprender:idiomaAaprender}})
+
   socket.current.on("message",message =>{
   setRecMessages(prevState => GiftedChat.append(prevState, message))
   })
@@ -29,8 +40,6 @@ useEffect(() => {
     socket.current.disconnect()
   } */
 }, [])
-
-
   const onSend = (messages) => {
   console.log(messages)
     socket.current.emit("message", messages[0].text)

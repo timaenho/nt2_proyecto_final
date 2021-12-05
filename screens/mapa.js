@@ -5,14 +5,19 @@ import { StyleSheet, Text, View, Dimensions ,Platform} from 'react-native';
 import { useState, useEffect,useContext } from 'react';
 import {permission,location} from 'expo';
 import GlobalContext, { authData } from '../components/context'
+import { useSelector } from 'react-redux';
+
+
 
 //https://github.com/react-native-maps/react-native-maps
+
+
 
   const markers = [
     {
       coordinates: {
-        latitude: 45.524548,
-        longitude: -122.6749817,
+        latitude: -34.524548,
+        longitude: -58.5749817,
       },
       title: "Tom Maenhout",
       description: "Holandés" 
@@ -57,6 +62,7 @@ import GlobalContext, { authData } from '../components/context'
         }
   
         let location = await Location.getCurrentPositionAsync({});
+        console.log(location)
         setLocation(location);
       })();
     }, []);
@@ -73,7 +79,8 @@ import GlobalContext, { authData } from '../components/context'
         valor = JSON.stringify(location);
         reporte = JSON.parse(valor);
         setAuthData({...AuthData,
-        location: valor
+          locationLatitude: reporte.coords.latitude,
+          locationLongitude: reporte.coords.longitude
       })
       }
 
@@ -82,23 +89,29 @@ import GlobalContext, { authData } from '../components/context'
 
 export default function Mapa({navigation}) {
     const {AuthData,setAuthData} = useContext(GlobalContext)
+    const markers2 = useSelector(state => state.usersOnline)
+    console.log("usersOnline " + markers2)
+    
+      
     Localizacion();
     const PerfilExt = () => {
       console.log("dentro la función de perfil")
+      console.log("latitude " + AuthData.locationLatitude)
+      console.log("longitude " + AuthData.locationLongitude)
       navigation.navigate("PerfilExt")
     }
 
-    console.log(AuthData)
+   
 
     return (
      
       <MapView
       style={styles.container}>
-      {markers.map((marker, index) => (
+      {markers.map((markers, index) => (
         <MapView.Marker key={index}
-          coordinate={marker.coordinates}
-          title={marker.title}
-          description={marker.description}
+          coordinate={markers.coordinates}
+          title={markers.title}
+          description={markers.description}
           onCalloutPress={PerfilExt}
         />
       ))}

@@ -20,7 +20,7 @@ export default function Perfil({navigation, route}) {
     const {nombre, setNombre} = useState(AuthData.username)
     const[estaEnLaBase, setEstaEnLaBase] = useState(false)
 
-    const post = () => {
+/*     const post = () => {
         console.log("estaEnLaBase " + estaEnLaBase)
         if(!estaEnLaBase){
             const url = Constant.BASE_URL + "/users/"
@@ -35,10 +35,10 @@ export default function Perfil({navigation, route}) {
               .then(response => console.log('Success:', response));
 
         }
-    }
+    } */
 
     //const {usuario} = route.params || {usuario: ''}
-    useEffect(() => {
+/*     useEffect(() => {
         const url = Constant.BASE_URL + "/users/" + AuthData.email
         fetch(url)
         .then(response => {
@@ -54,7 +54,7 @@ export default function Perfil({navigation, route}) {
     return (
         post()
     ) 
-            },[])
+            },[]) */
    
         
         

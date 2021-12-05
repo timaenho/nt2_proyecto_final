@@ -24,6 +24,8 @@ function reducer(state = {}, action) {
   switch (action.type) {
     case "message":
       return { ...state, message: action.data };
+    case "users_online":
+      return {...state, usersOnline: action.data}
     default:
       return state;
   }
@@ -42,8 +44,8 @@ export default function App() {
 
   const isAuthenticated = ()=> AuthData.username !== undefined
 
-  console.log(isAuthenticated())
-  console.log(AuthData)
+/*   console.log(isAuthenticated())
+  console.log(AuthData) */
   
   const Stack = createStackNavigator()
 

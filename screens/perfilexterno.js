@@ -16,6 +16,8 @@ export default function perfilexterno({navigation, route}) {
         idiomaNativo: 'holandes',
         idiomaAaprender: 'español'
     }
+
+    
     return (
       
         <View style={styles.container}>

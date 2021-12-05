@@ -7,7 +7,8 @@ const authData = {
     idiomaAaprender: ' ',
     idiomaNativo: ' ',
     imagen: undefined,
-    location:{},
+    locationLatitude:" ",
+    locationLongitude:" ",
     esOnline:false
 }
 

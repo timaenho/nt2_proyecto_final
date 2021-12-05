@@ -27,7 +27,7 @@ const Login = ({navigation, route}) => {
     React.useEffect(() => {
       if (response?.type === 'success') {
         const { authentication } = response;
-        console.log('authentication Data', authentication.idToken)
+        // console.log('authentication Data', authentication.idToken)
         
         
         // llamar a la API de google para traerme info del usuario
@@ -54,7 +54,7 @@ const Login = ({navigation, route}) => {
      
     },[AuthData])
   /*------------------------------{}-------------------------------   */
-    console.log(route)
+   
 
      const login = () => {
           console.log('Dentro la función de Login')
