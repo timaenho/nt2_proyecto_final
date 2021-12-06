@@ -1,18 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState,useContext, useEffect} from 'react';
-import { StyleSheet, Button, View,ScrollView,SafeAreaView, Text,TouchableOpacity } from 'react-native';
+import { StyleSheet, Button, View,ScrollView,SafeAreaView, Text} from 'react-native';
 import UploadImage from '../components/uploadImage';
 import GlobalContext from "../components/context"
 import IdiomaPicker from "../components/idiomaPicker"
 import * as Location from 'expo-location';
-import {Constant} from '../service/constantes'
-const usuario = {
-    _id: 1,
-    username: "Moon_Krater",
-    edad: 32,
-    idiomaNativo: 'holandes',
-    idiomaAaprender: 'español'
-}
+
+
 const Localizacion = () =>{
     const {AuthData,setAuthData} = useContext(GlobalContext)
     const [location, setLocation] = useState(null);

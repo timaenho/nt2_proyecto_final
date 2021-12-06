@@ -1,52 +1,20 @@
-import { StatusBar } from 'expo-status-bar';
-import io from "socket.io-client"
-import { View, Platform, KeyboardAvoidingView,StyleSheet } from 'react-native';
+
+import { View,KeyboardAvoidingView,StyleSheet } from 'react-native';
 import React, {useState,useEffect, useRef, useContext} from 'react';
 import {GiftedChat} from 'react-native-gifted-chat'
-import GlobalContext, { authData } from '../components/context'
-import { useDispatch } from 'react-redux';
-import {Constant} from '../service/constantes'
-// 192.168.0.1
-// 172.20.176.1
+import { useDispatch, useSelector } from 'react-redux';
+
 Chat.navigationOptions = screenProps => ({
   title: screenProps.navigation.getParam("name")
 })
-export default function Chat (route) {
-const[recMessages, setRecMessages] =useState([])
-const dispatch = useDispatch();
-const {AuthData,setAuthData} = useContext(GlobalContext)
-const [username, setUsername] = useState(AuthData.username)
-const [avatar, setAvatar] = useState(AuthData.imagen)
-const [locationLatitude, setLocationLatitude] = useState(AuthData.locationLatitude)
-const [locationLongitude, setLocationLongitude] = useState(AuthData.locationLongitude)
-const [idiomaAaprender, setIdiomaAaprender] = useState(AuthData.idiomaAaprender)
-const socket = useRef(null)
+export default function Chat ({route, navigation}) {
 const userExt = route.params
-
-useEffect(() => {
-  socket.current = io(Constant.NGR_KEY);
-  socket.current.emit("join",username,avatar)
-
-  dispatch({type:"server/join",data:{
-    username: username, 
-    avatar:avatar, 
-    locationLatitude: locationLatitude, 
-    locationLongitude: locationLongitude, 
-    idiomaAaprender:idiomaAaprender}})
-
-  socket.current.on("message",message =>{
-  setRecMessages(prevState => GiftedChat.append(prevState, message))
-  })
-
-  /* return () => {
-    socket.current.disconnect()
-  } */
-}, [])
-  const onSend = (messages) => {
-  console.log(messages)
-    socket.current.emit("message", messages[0].text)
-    setRecMessages(prevState=> GiftedChat.append(prevState,messages))
-  }
+const userExtId = userExt.userId 
+const selfUser = useSelector(state=>state.selfUser)
+const conversations = useSelector(state => state.conversations);
+const messages = conversations[userExtId].messages
+console.log(messages)
+const dispatch = useDispatch();
 
 return (
   
@@ -59,10 +27,21 @@ return (
    
        <GiftedChat 
        renderUsernameOnMessage
-       messages = {recMessages}
-       onSend ={messages => onSend(messages)}
+       messages = {messages}
+       onSend ={messages => 
+        {
+        dispatch({
+          type: "private_message", 
+          data: {message: messages[0], conversationId: userExtId}
+        })
+        dispatch({
+          type:"server/private_message",
+          data: {message: messages[0], conversationId: userExtId}
+        })
+       }
+      }
        user = {{
-         _id:1
+         _id: selfUser.userId
        }}    
        />
     

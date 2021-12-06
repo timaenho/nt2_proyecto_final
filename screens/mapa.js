@@ -2,11 +2,11 @@ import * as React from 'react';
 import MapView from 'react-native-maps';
 import { StyleSheet, Text, View, Dimensions ,Platform} from 'react-native';
 import { useState, useEffect,useContext,useRef } from 'react';
-import {permission,location} from 'expo';
+/* import {permission,location} from 'expo'; */
 import GlobalContext,{authData} from "../components/context"
 import { useSelector,useDispatch } from 'react-redux';
-import io from "socket.io-client"
-import {Constant} from '../service/constantes'
+/* import io from "socket.io-client"
+import {Constant} from '../service/constantes' */
 
 
 
@@ -88,8 +88,8 @@ export default function Mapa({navigation}) {
     }
     useEffect(() => {
  
-      socket.current = io(Constant.NGR_KEY);
-      socket.current.emit("join",username,avatar)
+  /*     socket.current = io(Constant.NGR_KEY);
+      socket.current.emit("join",username,avatar) */
     
       dispatch({type:"server/join",data:{
         username: username, 

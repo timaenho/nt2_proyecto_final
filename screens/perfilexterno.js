@@ -22,10 +22,10 @@ export default function perfilexterno({navigation, route}) {
                 Username: {userExt.username}
             </Text>
             <Text style= {styles.text}>
-                Idioma nativo: {userExt.idiomaNativo}
+                Idioma nativo: {userExt.descripcion}
                 </Text >
             <Text style= {styles.text}>
-                Idioma a aprender: {userExt.idiomaAaprender}
+                Idioma a aprender: {userExt.descripcion}
             </Text>
             <Button title="empezar a chatear!"
                 onPress= {() => {
