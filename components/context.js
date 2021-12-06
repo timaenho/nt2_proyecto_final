@@ -10,7 +10,7 @@ const authData = {
     coordinates: {
         latitude: Number,
         longitude: Number},
-    esOnline:false
+    esOnline:false,
 }
 
 

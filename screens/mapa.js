@@ -3,7 +3,7 @@ import MapView from 'react-native-maps';
 import { StyleSheet, Text, View, Dimensions ,Platform} from 'react-native';
 import { useState, useEffect,useContext,useRef } from 'react';
 import {permission,location} from 'expo';
-import GlobalContext, { authData } from '../components/context'
+import GlobalContext,{authData} from "../components/context"
 import { useSelector,useDispatch } from 'react-redux';
 import io from "socket.io-client"
 import {Constant} from '../service/constantes'
@@ -55,7 +55,6 @@ import {Constant} from '../service/constantes'
 export default function Mapa({navigation}) {
     const {AuthData,setAuthData} = useContext(GlobalContext)
 
-
     let markers2 = useSelector(state => state.usersOnline)
      if(markers2 == undefined){
        markers2 =  [{
@@ -80,11 +79,12 @@ export default function Mapa({navigation}) {
     
       
    
-    const PerfilExt = () => {
+    const PerfilExt = (markers2) => {
+
       console.log("dentro la función de perfil")
       console.log("latitude " + AuthData.coordinates.latitude)
       console.log("longitude " + AuthData.coordinates.longitude)
-      navigation.navigate("PerfilExt")
+      navigation.navigate("PerfilExt", markers2)
     }
     useEffect(() => {
  
@@ -111,8 +111,8 @@ export default function Mapa({navigation}) {
         <MapView.Marker key={index}
           coordinate= {markers2.coordinates}
           title={markers2.username}
-          description={markers2.idiomaAaprender}
-          onCalloutPress={PerfilExt}
+          description={markers2.descripcion}
+          onCalloutPress={() => PerfilExt(markers2)}
         />
       ))}
     </MapView>

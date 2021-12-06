@@ -8,8 +8,10 @@ import { useDispatch } from 'react-redux';
 import {Constant} from '../service/constantes'
 // 192.168.0.1
 // 172.20.176.1
-
-export default function App() {
+Chat.navigationOptions = screenProps => ({
+  title: screenProps.navigation.getParam("name")
+})
+export default function Chat (route) {
 const[recMessages, setRecMessages] =useState([])
 const dispatch = useDispatch();
 const {AuthData,setAuthData} = useContext(GlobalContext)
@@ -19,7 +21,7 @@ const [locationLatitude, setLocationLatitude] = useState(AuthData.locationLatitu
 const [locationLongitude, setLocationLongitude] = useState(AuthData.locationLongitude)
 const [idiomaAaprender, setIdiomaAaprender] = useState(AuthData.idiomaAaprender)
 const socket = useRef(null)
-
+const userExt = route.params
 
 useEffect(() => {
   socket.current = io(Constant.NGR_KEY);

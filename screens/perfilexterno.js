@@ -1,42 +1,36 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {} from 'react';
 import { StyleSheet, Button,Image, View, Text} from 'react-native';
-
-
-import GlobalContext from "../components/context"
-
 import hombre from '../images/hombre-gorra-camara-1.jpg'
 
 
 export default function perfilexterno({navigation, route}) {
+    const userExt = route.params
     const usuario = {
         _id: 1,
-
-        username: "Moon_Krater",
+        username: userExt.username,
         idiomaNativo: 'holandes',
-        idiomaAaprender: 'español'
+        idiomaAaprender: userExt.descripction
     }
-
-    
     return (
       
         <View style={styles.container}>
-            <Image source= {hombre} style={{width: 200, height: 200 }}/>
+            <Image source= {{ uri: userExt.avatar}} style={{width: 200, height: 200 }}/>
             <StatusBar style= {'auto'}/>
             
             <Text style= {styles.textTitulo}>
-                Username: {usuario.username}
+                Username: {userExt.username}
             </Text>
             <Text style= {styles.text}>
-                Idioma nativo: {usuario.idiomaNativo}
+                Idioma nativo: {userExt.idiomaNativo}
                 </Text >
             <Text style= {styles.text}>
-                Idioma a aprender: {usuario.idiomaAaprender}
+                Idioma a aprender: {userExt.idiomaAaprender}
             </Text>
             <Button title="empezar a chatear!"
                 onPress= {() => {
                 
-                navigation.navigate("Chat")
+                navigation.navigate("Chat", userExt, {name: userExt.username})
             }}/>
         </View>
     )}
